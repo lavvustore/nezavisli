@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nezávislí – hronovští patrioti | Hronov si zaslouží víc</title>
+<meta name="description" content="Nezávislí – hronovští patrioti. Kandidátka pro komunální volby 2026 v Hronově. Hronov si zaslouží víc.">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/lavvustore/nezavisli/main/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root{
+  --ink:        #1D1D1B;
+  --blue:       #1475A4;
+  --blue-dark:  #0E5A80;
+  --cyan:       #07ADD2;
+  --sky:        #E9F8FD;
+  --sky-2:      #B1E4F4;
+  --white:      #FFFFFF;
+  --gray:       #6B7280;
+  --border:     #DCEEF5;
+
+  --font-display: 'Poppins', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  --radius: 14px;
+  --container: 1180px;
+  --gap: 24px;
+  --leader-w: clamp(240px, 30vw, 430px); /* šířka lídryně v hero - zmenšuje se plynule na středních šířkách, ať text nepřeteče */
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+section{ padding: 96px 0; }
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.eyebrow{
+  display:inline-block;
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: var(--blue);
+  margin-bottom:14px;
+}
+h1,h2,h3{ font-family: var(--font-display); color: var(--ink); }
+h2{
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 800;
+  line-height:1.15;
+  margin-bottom: 16px;
+}
+.section-intro{
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+.section-intro p{
+  color: var(--gray);
+  font-size: 17px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  padding: 15px 30px;
+  border-radius: 100px;
+  border: 2px solid transparent;
+  cursor:pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn-primary{
+  background: #028dd0;
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(2,141,208,.28);
+}
+.btn-primary:hover{ background: #026fa8; transform: translateY(-2px); }
+.btn-outline{
+  background: transparent;
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.btn-outline:hover{ background: var(--sky); transform: translateY(-2px); }
+
+/* Placeholder pro fotky - nahradit skutečnou fotkou z GitHubu */
+.ph{
+  position:relative;
+  background: repeating-linear-gradient(135deg, var(--sky) 0px, var(--sky) 10px, var(--sky-2) 10px, var(--sky-2) 20px);
+  border: 2px dashed var(--blue);
+  border-radius: var(--radius);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  min-height:120px;
+}
+.ph img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.ph .ph-label{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding: 12px;
+  font-family: var(--font-body);
+  font-weight:600;
+  font-size:12.5px;
+  color: var(--blue-dark);
+  background: rgba(255,255,255,.82);
+  border-radius:8px;
+  line-height:1.4;
+  max-width:88%;
+}
+/* Jakmile se reálný obrázek nahraje, zmizí pruhované pozadí i přerušovaný rámeček */
+.ph.ph-loaded{
+  background: transparent;
+  border-color: transparent;
+}
+.ph.ph-loaded .ph-label{ display:none; }
+
+/* WAVE DIVIDER - signature motiv převzatý z hlavní strany */
+.wave-divider{
+  width:100%;
+  height:60px;
+  display:block;
+}
+
+/* ============================================
+   HEADER / NAV
+   ============================================ */
+header{
+  position: sticky;
+  top:0;
+  z-index: 100;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-wrap{
+  max-width: var(--container);
+  margin:0 auto;
+  padding: 16px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 20px;
+}
+.logo-block{ display:flex; align-items:center; }
+.logo-block .ph{
+  width: 190px;
+  height: 48px;
+  border-radius: 8px;
+  border-width:1.5px;
+}
+.logo-block .ph-label{
+  font-size:10.5px;
+  padding:6px 8px;
+}
+.logo-block .ph img{ object-fit:contain; }
+nav ul{
+  display:flex;
+  gap: 32px;
+  align-items:center;
+}
+nav a{
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size: 14px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color: var(--ink);
+  transition: color .15s ease;
+  white-space:nowrap;
+}
+nav a:hover{ color: var(--blue); }
+.nav-cta{
+  background: #028dd0;
+  color: var(--white) !important;
+  padding: 10px 22px;
+  border-radius: 100px;
+}
+.nav-cta:hover{ background: #026fa8 !important; }
+.burger{ display:none; }
+
+@media (max-width: 900px){
+  nav ul{ display:none; }
+  .burger{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+  }
+  .burger span{ width:26px; height:3px; background:var(--ink); border-radius:2px; }
+  nav.open ul{
+    display:flex;
+    flex-direction:column;
+    position:absolute;
+    top:100%;
+    left:0; right:0;
+    background:var(--white);
+    padding:24px;
+    gap:18px;
+    box-shadow:0 12px 24px rgba(0,0,0,.08);
+    border-bottom:1px solid var(--border);
+  }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero{
+  position:relative;
+  background: var(--sky);
+  padding: 0; /* přebíjí globální section{padding:96px 0} - to byl ten modrý pruh */
+}
+
+/* Skupinová fotka jako full-bleed pozadí nahoře */
+.hero-media{
+  position:relative;
+  width:100%;
+  min-height: 560px;
+  height: 82vh;
+  max-height: 760px;
+  overflow:visible; /* aby lídryně mohla přesahovat nahoru bez oříznutí */
+}
+/* Vizuální vrstva (fotka + modrý blok + lídryně) - na desktopu leží přes celou hero-media */
+.hero-visual{
+  position:absolute;
+  inset:0;
+}
+/* Tmavě modrý blok vlevo - zabírá 1/5 šířky, fotka je jen ve zbylých 4/5 */
+.hero-media-leftblock{
+  position:absolute;
+  top:0; bottom:0; left:0;
+  width: 23%;
+  z-index:1;
+  background: #028dd0;
+}
+.hero-media-photo{
+  position:absolute;
+  top:0; right:0; bottom:0;
+  left: 23%;
+  z-index:1;
+  border-radius:0;
+  border:none;
+  overflow:hidden; /* ořez platí jen pro samotnou fotku, ne pro celou hero-media */
+  background: linear-gradient(135deg, var(--sky) 0%, var(--sky-2) 100%);
+}
+.hero-media-photo picture{ display:block; width:100%; height:100%; }
+.hero-media-photo img{ width:100%; height:100%; object-fit:cover; object-position:center; }
+.hero-media-photo .ph-label{
+  max-width: 320px;
+  background: rgba(255,255,255,.9);
+}
+
+/* Ztmavení fotky pro čitelnost textu a přechod dolů k lídryni - tenký pruh dole */
+.hero-media-overlay{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(13,30,38,.1) 0%, rgba(13,30,38,.02) 26%, rgba(13,30,38,.01) 84%, rgba(13,30,38,.12) 100%);
+}
+
+/* Nadpis přes fotku - navazuje zleva na lídryni, doprava */
+.hero-headline{
+  position:absolute;
+  z-index:5;
+  top: 64%;
+  transform: translateY(-50%);
+  left: calc(4% + var(--leader-w) + 48px);
+  right: 5%;
+  max-width:none;
+  text-align:left;
+}
+.hero-brandname{
+  font-family: var(--font-display);
+  font-weight:800;
+  font-size: 21px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color: var(--white);
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0,0,0,.45);
+  white-space:nowrap;
+}
+.hero-brandname span{ color: var(--white); }
+.hero-brandname em{
+  font-style:normal;
+  font-weight:800;
+  font-size: 21px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color: var(--white);
+  margin-left:10px;
+}
+.hero-headline .eyebrow{
+  background: rgba(255,255,255,.92);
+  padding:6px 14px;
+  border-radius:100px;
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
+  margin-top: 16px;
+  display:inline-block;
+}
+.hero-slogan{
+  font-family: var(--font-display);
+  font-weight:800;
+  font-size: clamp(24px, 3vw, 60px);
+  line-height:1.03;
+  color: var(--white);
+  margin-top: 16px;
+  text-shadow: 0 3px 22px rgba(0,0,0,.45);
+  white-space: nowrap;
+}
+.hero-slogan span{
+  color: var(--white);
+}
+
+/* Lídryně vlevo, na výšku, sahá skoro nahoru */
+.hero-leader{
+  position:absolute;
+  z-index:4;
+  left: 4%;
+  bottom: -4%;
+  width: var(--leader-w);
+}
+.hero-leader .ph{
+  height: 620px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.hero-leader .ph img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;       /* fotka se celá vejde do pevného boxu, nikdy se neořízne */
+  object-position: bottom center;
+}
+.hero-leader .ph-label{
+  background: rgba(233,248,253,.94);
+  border: 2px dashed var(--blue);
+  border-radius: var(--radius);
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Text/CTA pruh pod fotkou */
+.hero-copy-strip{
+  position:relative;
+  z-index:6;
+  background: var(--white);
+  padding: 48px 24px 40px;
+  padding-left: calc(var(--leader-w) + 4% + 24px);
+}
+.hero-copy-strip p{
+  font-size:18px;
+  color: var(--gray);
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+.hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+/* ============================================
+   HERO – MOBIL
+   Fotka + lídryně zůstávají nahoře jako vizuál
+   (pevná výška, ořezaná), text jde normálně
+   pod fotku na bílém pozadí - čitelnější a
+   předvídatelnější než přes fotku.
+   ============================================ */
+@media (max-width: 1100px){
+  .hero-media{
+    display:flex;
+    flex-direction:column;
+    height:auto;
+    min-height:0;
+  }
+  .hero-visual{
+    position:relative;
+    inset:auto;
+    height: 62vw;
+    min-height: 280px;
+    max-height: 420px;
+    overflow:hidden;
+  }
+  .hero-media-overlay{
+    background: linear-gradient(180deg, rgba(13,30,38,.08) 0%, rgba(13,30,38,.02) 55%, rgba(13,30,38,.22) 100%);
+  }
+  .hero-media-leftblock{
+    display:none; /* na mobilu bez rozdělení - mobilní fotka bude vlastní, oříznutá na míru */
+  }
+  .hero-media-photo{
+    left: 0;
+  }
+  .hero-leader{
+    left:16px;
+    top:0;
+    bottom:0;
+    width: auto;
+    z-index:4;
+  }
+  .hero-leader .ph{
+    height: 100%;
+    width: auto;
+  }
+  .hero-leader .ph img{
+    position: static;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .hero-headline{
+    position:static;
+    z-index:auto;
+    top:auto;
+    left:auto;
+    right:auto;
+    transform:none;
+    max-width:none;
+    text-align:left;
+    background: var(--white);
+    padding: 24px 24px 8px;
+  }
+  .hero-brandname{
+    color: var(--blue);
+    text-shadow:none;
+    white-space:nowrap;
+    font-size: 14px;
+    letter-spacing:.02em;
+  }
+  .hero-brandname span{ color: var(--blue); }
+  .hero-brandname em{
+    display:inline;
+    color: var(--blue);
+    font-size: 14px;
+    margin-left:8px;
+    margin-top:0;
+  }
+  .hero-slogan{
+    color: var(--ink);
+    text-shadow:none;
+    white-space:normal;
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .hero-slogan span{ color: #028dd0; }
+  .hero-headline .eyebrow{
+    background: var(--sky);
+    color: var(--blue);
+    box-shadow:none;
+  }
+
+  .hero-copy-strip{
+    padding: 8px 24px 40px;
+  }
+}
+
+/* ============================================
+   KDO JSME
+   ============================================ */
+.kdo-jsme .container{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items:center;
+}
+.kdo-jsme-text p{ margin-bottom:16px; color:var(--gray); font-size:17px; }
+.kdo-jsme .ph{ aspect-ratio: 4/3; }
+@media (max-width: 800px){
+  .kdo-jsme .container{ grid-template-columns:1fr; }
+  .kdo-jsme-text{ order:2; }
+}
+
+/* ============================================
+   KANDIDÁTI
+   ============================================ */
+.kandidati{ background: var(--sky); }
+.top3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
+}
+.candidate-top-card{
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: 0 12px 30px rgba(20,117,164,.12);
+  position:relative;
+}
+.candidate-top-card .ph{ aspect-ratio: 4/4.6; border-radius:0; border:none; }
+.ballot-badge{
+  position:absolute;
+  top:16px; left:16px;
+  z-index:5;
+  width:44px; height:44px;
+  border-radius:50%;
+  background: var(--cyan);
+  color:var(--white);
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 14px rgba(7,173,210,.35);
+}
+.candidate-top-card .candidate-info{ padding: 22px 22px 26px; }
+.candidate-top-card .candidate-name{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:20px;
+  margin-bottom:4px;
+}
+.candidate-top-card .candidate-role{
+  color: var(--blue);
+  font-weight:600;
+  font-size:14.5px;
+}
+
+.grid-rest{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 20px;
+}
+.candidate-card{
+  background: var(--white);
+  border-radius: 12px;
+  overflow:hidden;
+  box-shadow: 0 6px 16px rgba(20,117,164,.08);
+  position:relative;
+}
+.candidate-card .ph{ aspect-ratio: 3/3.4; border-radius:0; border:none; }
+.candidate-card .ballot-badge{ width:32px; height:32px; font-size:13px; top:10px; left:10px; }
+.candidate-card .candidate-info{ padding:14px 16px 18px; }
+.candidate-card .candidate-name{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:14.5px;
+  margin-bottom:2px;
+}
+.candidate-card .candidate-role{
+  color:var(--gray);
+  font-size:12.5px;
+}
+
+@media (max-width: 800px){
+  .top3{ grid-template-columns:1fr; }
+}
+
+/* ============================================
+   PROGRAM
+   ============================================ */
+.program-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 56px;
+}
+details.program-card{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  transition: box-shadow .18s ease;
+}
+details.program-card[open]{ box-shadow: 0 16px 32px rgba(20,117,164,.12); }
+details.program-card summary{
+  padding: 32px 26px;
+  cursor:pointer;
+  list-style:none;
+}
+details.program-card summary::-webkit-details-marker{ display:none; }
+details.program-card summary::marker{ content:""; }
+.program-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:16px;
+}
+.program-icon{
+  width:150px;
+  height:150px;
+  flex-shrink:0;
+  border-radius:12px;
+}
+.program-icon .ph-label{ font-size:11px; padding:8px; }
+.program-num{
+  font-family: var(--font-display);
+  font-weight:800;
+  font-size: 15px;
+  color: var(--cyan);
+  margin-bottom:14px;
+}
+.program-card h3{
+  font-size: 19px;
+  font-weight:700;
+  margin-bottom:10px;
+  line-height:1.3;
+  color: var(--ink);
+}
+.program-summary{ color: var(--gray); font-size:15px; }
+.program-points{
+  list-style:none;
+  margin: 14px 0 4px;
+  padding:0;
+}
+.program-points li{
+  position:relative;
+  padding-left:18px;
+  font-weight:700;
+  font-size:14.5px;
+  color: var(--ink);
+  margin-bottom:7px;
+  line-height:1.35;
+}
+.program-points li::before{
+  content:"";
+  position:absolute; left:0; top:7px;
+  width:6px; height:6px; border-radius:50%;
+  background: var(--cyan);
+}
+.program-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:18px;
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color: var(--blue);
+}
+.program-toggle .chevron{ transition: transform .2s ease; flex-shrink:0; }
+details[open] .program-toggle .chevron{ transform: rotate(180deg); }
+.program-toggle .when-open{ display:none; }
+details[open] .program-toggle .when-closed{ display:none; }
+details[open] .program-toggle .when-open{ display:inline; }
+.program-detail{
+  padding: 0 26px 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+  padding-top: 20px;
+}
+.program-detail p{ color: var(--gray); font-size:15px; margin-bottom:12px; }
+.program-detail p:last-child{ margin-bottom:0; }
+.program-detail strong{ color: var(--ink); }
+
+.program-principles{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  background: var(--sky);
+  border-radius: var(--radius);
+  padding: 36px;
+}
+.program-principles h3{
+  font-family: var(--font-display);
+  font-size:17px;
+  font-weight:700;
+  color: var(--blue-dark);
+  margin-bottom:8px;
+}
+.program-principles p{ color: var(--gray); font-size:15px; }
+
+@media (max-width: 640px){
+  .program-principles{ padding: 24px; }
+}
+
+/* ============================================
+   JAK VOLIT
+   ============================================ */
+.jak-volit{
+  background: linear-gradient(90deg, #028dd0 0%, var(--cyan) 100%);
+  color: var(--white);
+}
+.jak-volit .eyebrow{ color: var(--cyan); }
+.jak-volit h2{ color: var(--white); }
+.volit-grid{
+  display:grid;
+  grid-template-columns: 340px 1fr;
+  gap: 48px;
+  align-items:start;
+}
+.date-card{
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align:center;
+}
+.date-card .date-label{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color: #028dd0;
+  margin-bottom:12px;
+}
+.date-card .date-big{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size: 42px;
+  line-height:1.15;
+  margin-bottom:14px;
+  color: var(--ink);
+}
+.date-card .date-times{
+  font-size:15px;
+  color: var(--gray);
+  line-height:1.7;
+}
+.volit-points{ display:flex; flex-direction:column; gap:34px; }
+.volit-point{ display:flex; gap:16px; align-items:flex-start; }
+.volit-point .num{
+  flex-shrink:0;
+  width:38px; height:38px;
+  border-radius:50%;
+  background: var(--white);
+  color: #028dd0;
+  font-family:var(--font-display);
+  font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px;
+}
+.volit-point h3{ color: var(--ink); font-size:17px; margin-bottom:4px; }
+.volit-point p{ color: rgba(29,29,27,.75); font-size:15px; }
+.done-check{
+  display:inline-block;
+  width:15px;
+  height:15px;
+  vertical-align:-2px;
+  margin-left:2px;
+  color: rgba(29,29,27,.75);
+}
+
+@media (max-width: 800px){
+  .volit-grid{ grid-template-columns:1fr; }
+}
+
+/* ============================================
+   PODPOŘTE NÁS
+   ============================================ */
+.podporte .container{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items:center;
+}
+.podporte-list{ display:flex; flex-direction:column; gap:20px; margin: 28px 0 32px; }
+.podporte-item{ display:flex; gap:14px; }
+.podporte-item .dot{
+  flex-shrink:0;
+  width:8px; height:8px;
+  border-radius:50%;
+  background: var(--blue);
+  margin-top:9px;
+}
+.podporte-item strong{ display:block; font-family:var(--font-display); font-size:16px; margin-bottom:2px; }
+.podporte-item span{ color:var(--gray); font-size:15px; }
+.podporte-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+.podporte-visual .ph{ aspect-ratio: 4/5; }
+
+@media (max-width: 800px){
+  .podporte .container{ grid-template-columns:1fr; }
+  .podporte-visual{ order:-1; }
+}
+
+/* ============================================
+   KONTAKT
+   ============================================ */
+.kontakt{ background: var(--sky); text-align:center; }
+.kontakt .section-intro{ margin-left:auto; margin-right:auto; text-align:center; }
+.kontakt-links{
+  display:flex;
+  justify-content:center;
+  gap: 18px;
+  flex-wrap:wrap;
+  margin-top: 8px;
+}
+.kontakt-links a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background: var(--white);
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size:14px;
+  box-shadow: 0 8px 20px rgba(20,117,164,.1);
+  transition: transform .15s ease;
+}
+.kontakt-links a:hover{ transform: translateY(-3px); }
+.kontakt-links svg{ width:20px; height:20px; fill: var(--blue); }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer{
+  background: var(--ink);
+  color: rgba(255,255,255,.6);
+  padding: 32px 0;
+  text-align:center;
+  font-size: 13.5px;
+}
+footer strong{ color: var(--white); }
+
+/* ============================================
+   OBECNÉ MOBILNÍ DOLADĚNÍ
+   ============================================ */
+@media (max-width: 640px){
+  section{ padding: 64px 0; }
+  h2{ font-size: clamp(24px, 7vw, 32px); }
+  .section-intro{ margin-bottom:36px; }
+  .program-icon{ width:100px; height:100px; }
+  .program-card-top{ margin-bottom:12px; }
+  details.program-card summary{ padding: 24px 20px; }
+  .program-detail{ padding: 0 20px 24px; padding-top:16px; }
+  .top3{ margin-bottom:32px; }
+  .grid-rest{ grid-template-columns: repeat(2, 1fr); gap:14px; }
+  .kontakt-links{ flex-direction:column; align-items:stretch; }
+  .kontakt-links a{ justify-content:center; }
+  .volit-grid{ gap:32px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER / NAV
+     ============================================ -->
+<header>
+  <div class="nav-wrap">
+    <div class="logo-block">
+      <div class="ph ph-loaded" data-img-key="logo">
+        <img src="https://raw.githubusercontent.com/lavvustore/nezavisli/main/logo.png" alt="Nezávislí – hronovští patrioti" fetchpriority="high" onerror="this.remove(); this.parentElement.classList.remove('ph-loaded')">
+        <div class="ph-label">LOGO<br>soubor: logo.png</div>
+      </div>
+    </div>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#kdo-jsme">Kdo jsme</a></li>
+        <li><a href="#kandidati">Kandidáti</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#jak-volit" class="nav-cta">Jak volit</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Otevřít menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero" id="hero">
+  <div class="hero-media">
+    <div class="hero-visual">
+      <div class="hero-media-leftblock"></div>
+      <div class="ph hero-media-photo ph-loaded" data-img-key="hero_group">
+        <picture>
+          <source media="(max-width: 1100px)" srcset="https://raw.githubusercontent.com/lavvustore/nezavisli/main/hero-group-mobile.png">
+          <img src="https://raw.githubusercontent.com/lavvustore/nezavisli/main/hero-group.png" alt="" fetchpriority="high" onerror="this.closest('.ph').classList.remove('ph-loaded')">
+        </picture>
+        <div class="ph-label">FOTO: skupinová fotka celé kandidátky (21 lidí), širokoúhlá<br>soubor: hero-group.png (desktop) / hero-group-mobile.png (mobil, volitelné)</div>
+      </div>
+      <div class="hero-media-overlay"></div>
+
+      <div class="hero-leader">
+        <div id="leaderParallax" class="ph ph-loaded" data-img-key="hero_leader">
+          <img src="https://raw.githubusercontent.com/lavvustore/nezavisli/main/hero-leader.png" alt="Ivana Stonjeková" fetchpriority="high" onerror="this.remove(); this.parentElement.classList.remove('ph-loaded')">
+          <div class="ph-label">FOTO: Ivana Stonjeková<br>(lídryně, na výšku, průhledné pozadí)<br>soubor: hero-leader.png</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-headline">
+      <div class="hero-brandname"><span>NEZÁVISLÍ</span> <em>Hronovští patrioti</em></div>
+      <h1 class="hero-slogan"><span>Hronov</span> si zaslouží víc</h1>
+      <span class="eyebrow">Komunální volby · 9.–10. října 2026</span>
+    </div>
+  </div>
+
+  <div class="hero-copy-strip">
+    <p>Jsme lidé různých profesí a generací ze všech částí Hronova.<br><strong>Spojuje nás jedno:</strong> skutečný zájem o rozvoj našeho města.</p>
+    <div class="hero-ctas">
+      <a href="#kandidati" class="btn btn-primary">Naše kandidátka</a>
+      <a href="#program" class="btn btn-outline">Náš program</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     KDO JSME
+     ============================================ -->
+<section class="kdo-jsme" id="kdo-jsme">
+  <div class="container">
+    <div class="kdo-jsme-text">
+      <span class="eyebrow">Kdo jsme</span>
+      <h2>Lidé z Hronova,<br>pro Hronov</h2>
+      <p>Společně s vámi chceme budovat město, ve kterém se doopravdy dobře žije.</p>
+      <p>Slibujeme, že budeme naslouchat vašim potřebám a odpovědně hospodařit – aby každá vynaložená koruna měla smysl a pomohla tam, kde je to skutečně potřeba.</p>
+    </div>
+    <div class="kdo-jsme-visual">
+      <div class="ph" data-img-key="kdo_jsme">
+        <div class="ph-label">FOTO: tým na náměstí / neformální foto skupiny<br>soubor: kdo-jsme.jpg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     KANDIDÁTI
+     ============================================ -->
+<section class="kandidati" id="kandidati">
+  <div class="container">
+    <div class="section-intro">
+      <span class="eyebrow">Naše kandidátka</span>
+      <h2>21 lidí, jeden cíl</h2>
+      <p>Propojujeme zkušenosti těch, kteří už v zastupitelstvu pracují nebo pracovali, s energií a pohledem nových kandidátů, kteří jsou připraveni městu nabídnout své znalosti a zkušenosti.</p>
+    </div>
+
+    <div class="top3" id="top3Grid"></div>
+    <div class="grid-rest" id="restGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     PROGRAM
+     ============================================ -->
+<section class="program" id="program">
+  <div class="container">
+    <div class="section-intro">
+      <span class="eyebrow">Náš program</span>
+      <h2>Volební program</h2>
+      <p>Pět oblastí, na kterých chceme pracovat hned od prvního dne v zastupitelstvu.</p>
+    </div>
+    <div class="program-grid">
+
+      <details class="program-card">
+        <summary>
+          <div class="program-card-top">
+            <div class="program-num">01</div>
+            <div class="ph program-icon" data-img-key="program_icon_1">
+              <div class="ph-label">ikona<br>soubor: 1.png</div>
+            </div>
+          </div>
+          <h3>Obchvat města a bezpečné centrum</h3>
+          <p class="program-summary">Chceme vyvést tranzitní dopravu mimo centrum a zvýšit bezpečnost v centru a okolí Textonnie.</p>
+          <span class="program-toggle">
+            <span class="when-closed">Číst více</span><span class="when-open">Skrýt</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </summary>
+        <div class="program-detail">
+          <p><strong>Obchvat města.</strong> Naším cílem je vyvést tranzitní dopravu mimo centrum města. Odkloněním těžké dopravy se uleví městským komunikacím, zvýší se bezpečnost chodců a sníží hladina hluku a emisí v centru města. Budeme pokračovat v přípravách „malého" obchvatu města a zintenzivníme jednání s Královéhradeckým krajem a dalšími příslušnými orgány.</p>
+          <p><strong>Bezpečnost v centru a okolí Textonnie.</strong> Intenzivně se budeme věnovat zvýšení bezpečnosti v problematických lokalitách města, především pak v areálu bývalé Textonnie.</p>
+        </div>
+      </details>
+
+      <details class="program-card">
+        <summary>
+          <div class="program-card-top">
+            <div class="program-num">02</div>
+            <div class="ph program-icon" data-img-key="program_icon_2">
+              <div class="ph-label">ikona<br>soubor: 2.png</div>
+            </div>
+          </div>
+          <h3>Školství</h3>
+          <p class="program-summary">Chceme kvalifikované učitele, moderní zázemí pro výuku a posílit prevenci rizikového chování.</p>
+          <span class="program-toggle">
+            <span class="when-closed">Číst více</span><span class="when-open">Skrýt</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </summary>
+        <div class="program-detail">
+          <p><strong>Kvalifikovaní učitelé.</strong> Chceme pomoci škole při hledání aprobovaných a kvalitních učitelů.</p>
+          <p><strong>Moderní zázemí a vybavení pro výuku.</strong> Budeme pokračovat v údržbě a modernizaci školských objektů – zateplení budov, modernizace vnitřních prostor, moderní technologie, sportovní vybavení.</p>
+          <p><strong>Posílení prevence rizikového chování.</strong> Podpoříme školu při zajištění bezpečného prostředí a řešení šikany – příspěvek na práci školních psychologů a preventistů, kamerový systém na budovách a v jejich okolí.</p>
+        </div>
+      </details>
+
+      <details class="program-card">
+        <summary>
+          <div class="program-card-top">
+            <div class="program-num">03</div>
+            <div class="ph program-icon" data-img-key="program_icon_3">
+              <div class="ph-label">ikona<br>soubor: 3.png</div>
+            </div>
+          </div>
+          <h3>Zlepšení vzhledu centra města, moderní veřejný prostor</h3>
+          <p class="program-summary">Chceme dostavět přístavbu Sálu Josefa Čapka a smysluplně využít prázdný pozemek na náměstí.</p>
+          <span class="program-toggle">
+            <span class="when-closed">Číst více</span><span class="when-open">Skrýt</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </summary>
+        <div class="program-detail">
+          <p><strong>Dostavba přístavby Sálu Josefa Čapka a využití prázdného pozemku na náměstí.</strong> Společně s občany chceme najít smysluplné využití nedokončených budov a prostor s důrazem na kvalitu a účelnost. Zlepšit bychom chtěli údržbu stávajícího majetku města a městské zeleně i úklid města.</p>
+        </div>
+      </details>
+
+      <details class="program-card">
+        <summary>
+          <div class="program-card-top">
+            <div class="program-num">04</div>
+            <div class="ph program-icon" data-img-key="program_icon_4">
+              <div class="ph-label">ikona<br>soubor: 4.png</div>
+            </div>
+          </div>
+          <h3>Dostupná zdravotní péče a služby</h3>
+          <p class="program-summary">Chceme zajistit obvodní, dětské i zubní lékaře v Hronově a podpořit rodiny i seniory.</p>
+          <span class="program-toggle">
+            <span class="when-closed">Číst více</span><span class="when-open">Skrýt</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </summary>
+        <div class="program-detail">
+          <p><strong>Obvodní, dětští a zubní lékaři v Hronově.</strong> Zajištění základní lékařské péče je pro nás prioritou v oblasti kvality života. Chceme, aby občané našeho města nemuseli za základní péčí dojíždět desítky kilometrů. Aktivně nabídneme motivační programy pro nové lékaře (např. zajištění obecního bytu nebo výhodný pronájem nebytových prostor).</p>
+          <p><strong>Podpora rodin a seniorů.</strong> Rodinám s dětmi chceme nabídnout kvalitní školství i bohaté možnosti využití volného času.</p>
+        </div>
+      </details>
+
+      <details class="program-card">
+        <summary>
+          <div class="program-card-top">
+            <div class="program-num">05</div>
+            <div class="ph program-icon" data-img-key="program_icon_5">
+              <div class="ph-label">ikona<br>soubor: 5.png</div>
+            </div>
+          </div>
+          <h3>Kultura, volný čas, sport a spolkový život</h3>
+          <p class="program-summary">Chceme efektivněji využít park, revitalizovat koupaliště ve Velkém Dřevíči, propojit organizace ve městě a podpořit Jiráskův Hronov.</p>
+          <span class="program-toggle">
+            <span class="when-closed">Číst více</span><span class="when-open">Skrýt</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </summary>
+        <div class="program-detail">
+          <p><strong>Efektivnější využití parku</strong> pro všechny věkové skupiny. Více koncertů, divadel, častější letní kino, rozšíření tematických a víkendových akcí s přispěním místních spolků, sportovních klubů, škol, řemeslníků a dalších.</p>
+          <p><strong>Revitalizace areálu koupaliště ve Velkém Dřevíči.</strong> Společně s místními občany chceme hledat smysluplné využití prostoru a jeho proměnu.</p>
+          <p><strong>Provázání a podpora organizací ve městě.</strong> Naším cílem je rozšířit transparentní systém dotační podpory pro sportovní kluby, zájmové a volnočasové organizace. Budeme iniciovat jejich vzájemnou spolupráci, aby sportovní a spolkový život ve městě fungoval efektivně a synergicky.</p>
+          <p><strong>Jiráskův Hronov.</strong> Chceme posilovat a vytvářet stabilní a dlouhodobé finanční i materiální zázemí pro festival, který je největší tradiční kulturní akcí našeho města. Naší snahou bude podpořit znovuoživení místního divadelního souboru.</p>
+          <p>Město tvoří lidé. Chceme vytvářet podmínky pro rozvoj komunitního života, sportu a smysluplného trávení volného času všech generací.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="program-principles">
+      <div>
+        <h3>Efektivně</h3>
+        <p>Všechny projekty se budeme snažit v maximální možné míře spolufinancovat z evropských a státních fondů, abychom šetřili městskou pokladnu tak, aby byla jejich realizace vůbec možná.</p>
+      </div>
+      <div>
+        <h3>Otevřeně, věcně a vstřícně</h3>
+        <p>Občany budeme o dění ve městě i na úřadě pravidelně, srozumitelně a včas informovat. Rozhodovat budeme na základě dat a reálných potřeb města.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     JAK VOLIT
+     ============================================ -->
+<section class="jak-volit" id="jak-volit">
+  <div class="container">
+    <div class="section-intro">
+      <span class="eyebrow">Komunální volby 2026</span>
+      <h2>Jak nás volit</h2>
+    </div>
+    <div class="volit-grid">
+      <div class="date-card">
+        <div class="date-label">Termín voleb</div>
+        <div class="date-big">9.–10. října 2026</div>
+        <div class="date-times">Pátek 9. 10. — 14:00 až 22:00<br>Sobota 10. 10. — 8:00 až 14:00</div>
+      </div>
+      <div class="volit-points">
+        <div class="volit-point">
+          <div class="num">1</div>
+          <div>
+            <h3>Přijďte v pátek nebo v sobotu</h3>
+            <p>Volí se v pátek 9. 10. od 14:00 do 22:00 a v sobotu 10. 10. od 8:00 do 14:00 – osobně, ve vašem volebním okrsku v Hronově. Stačí platný občanský průkaz.</p>
+          </div>
+        </div>
+        <div class="volit-point">
+          <div class="num">2</div>
+          <div>
+            <h3>Zakřížkujte Nezávislí – hronovští patrioti, a pokud chcete, i jednotlivé kandidáty</h3>
+            <p>Hlasovací lístek dostanete jeden společný pro všechny strany – na něm najdete i Nezávislí – hronovští patrioti. Zakřížkujte celou kandidátku, případně můžete navíc zakřížkovat i jednotlivé kandidáty, které chcete podpořit – označit jich můžete až 21.</p>
+          </div>
+        </div>
+        <div class="volit-point">
+          <div class="num">3</div>
+          <div>
+            <h3>Vhoďte obálku do volební schránky</h3>
+            <p>Lístek vložte do úřední obálky a tu na závěr vhoďte do volební schránky. Hotovo! <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PODPOŘTE NÁS
+     ============================================ -->
+<section class="podporte" id="podporte" style="display:none">
+<!-- Sekce dočasně skrytá na přání - obsah zůstává v kódu pro snadné obnovení -->
+
+  <div class="container">
+    <div class="podporte-text">
+      <span class="eyebrow">Zapojte se</span>
+      <h2>Jak nás můžete podpořit</h2>
+      <p>Nepotřebujeme vaše peníze – potřebujeme, aby o nás vědělo co nejvíc lidí v Hronově. Stačí málo:</p>
+      <div class="podporte-list">
+        <div class="podporte-item">
+          <div class="dot"></div>
+          <div><strong>Vyvěste náš banner</strong><span>Na plot, balkon nebo výlohu – rádi ho přivezeme přímo k vám.</span></div>
+        </div>
+        <div class="podporte-item">
+          <div class="dot"></div>
+          <div><strong>Rozneste letáky</strong><span>Do čekárny u lékaře, na nástěnku, sousedům do schránky.</span></div>
+        </div>
+        <div class="podporte-item">
+          <div class="dot"></div>
+          <div><strong>Sdílejte nás dál</strong><span>Na sociálních sítích i v běžné řeči se sousedy – osobní doporučení funguje nejlíp.</span></div>
+        </div>
+      </div>
+      <div class="podporte-ctas">
+        <a href="#" class="btn btn-primary" id="downloadLeaflet">Stáhnout leták (PDF)</a>
+        <a href="#" class="btn btn-outline" id="downloadBanner">Stáhnout banner</a>
+      </div>
+    </div>
+    <div class="podporte-visual">
+      <div class="ph" data-img-key="podporte">
+        <div class="ph-label">FOTO: banner/leták in-situ nebo dobrovolníci s materiály<br>soubor: podporte.jpg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     KONTAKT
+     ============================================ -->
+<section class="kontakt" id="kontakt">
+  <div class="container">
+    <div class="section-intro">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Ozvěte se nám</h2>
+      <p>Máte otázku, nápad, nebo chcete pomoct? Napište nám.</p>
+    </div>
+    <div class="kontakt-links">
+      <a href="mailto:info@nezavislihronov.cz">
+        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm16 2.24-7.4 6.47a1 1 0 0 1-1.2 0L4 8.24V18h16V8.24z"/></svg>
+        info@nezavislihronov.cz
+      </a>
+      <a href="#" data-social="facebook">
+        <svg viewBox="0 0 24 24"><path d="M13 22v-9h3l.5-3.5H13V7.4c0-1 .3-1.7 1.7-1.7H16.5V2.4C16.2 2.3 15.1 2.2 13.8 2.2c-2.6 0-4.4 1.6-4.4 4.5v2.8H6.5V13H9.4v9H13z"/></svg>
+        Facebook
+      </a>
+      <a href="#" data-social="instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c2.7 0 3 0 4 .05 1 .05 1.7.2 2.3.5.6.3 1.1.6 1.6 1.1.5.5.8 1 1.1 1.6.3.6.4 1.3.5 2.3.05 1 .05 1.3.05 4s0 3-.05 4c-.05 1-.2 1.7-.5 2.3-.3.6-.6 1.1-1.1 1.6-.5.5-1 .8-1.6 1.1-.6.3-1.3.4-2.3.5-1 .05-1.3.05-4 .05s-3 0-4-.05c-1-.05-1.7-.2-2.3-.5-.6-.3-1.1-.6-1.6-1.1-.5-.5-.8-1-1.1-1.6-.3-.6-.4-1.3-.5-2.3-.05-1-.05-1.3-.05-4s0-3 .05-4c.05-1 .2-1.7.5-2.3.3-.6.6-1.1 1.1-1.6.5-.5 1-.8 1.6-1.1.6-.3 1.3-.4 2.3-.5 1-.05 1.3-.05 4-.05zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.4 6a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <strong>Nezávislí – hronovští patrioti</strong> · Hronov si zaslouží víc · © 2026
+  </div>
+</footer>
+
+<script>
+/* ============================================
+   IMAGES CONFIG
+   Až vznikne GitHub repo s fotkami, doplň GH_BASE
+   a případně názvy souborů dole u kandidátů.
+   Dokud fotky nejsou nahrané, obrázek spadne na
+   placeholder (onerror), takže není třeba nic mazat.
+   ============================================ */
+const GH_BASE = "https://raw.githubusercontent.com/lavvustore/nezavisli/main";
+
+const IMAGES = {
+  logo:        `${GH_BASE}/logo.png`,
+  hero_leader: `${GH_BASE}/hero-leader.png`,
+  hero_group:  `${GH_BASE}/hero-group.png`,
+  kdo_jsme:    `${GH_BASE}/kdo-jsme.jpg`,
+  podporte:    `${GH_BASE}/podporte.jpg`,
+  program_icon_1: `${GH_BASE}/1.png`,
+  program_icon_2: `${GH_BASE}/2.png`,
+  program_icon_3: `${GH_BASE}/3.png`,
+  program_icon_4: `${GH_BASE}/4.png`,
+  program_icon_5: `${GH_BASE}/5.png`,
+};
+
+function applyImage(el, key){
+  const url = IMAGES[key];
+  if(!url) return;
+  const img = new Image();
+  img.onload = () => {
+    const realImg = document.createElement('img');
+    realImg.src = url;
+    realImg.alt = '';
+    el.appendChild(realImg);
+    el.classList.add('ph-loaded');
+  };
+  img.onerror = () => { /* zůstává placeholder */ };
+  img.src = url;
+}
+
+document.querySelectorAll('[data-img-key]').forEach(el=>{
+  if(el.querySelector('img')) return; // logo / hero_leader / hero_group už mají fotku natvrdo v HTML
+  applyImage(el, el.getAttribute('data-img-key'));
+});
+
+/* ============================================
+   KANDIDÁTI DATA
+   Pořadí odpovídá pořadí na hlasovacím lístku.
+   ============================================ */
+const CANDIDATES = [
+  {p:1, titul:"Ing.", jmeno:"Ivana Stonjeková", prijmeni:"Stonjeková", povolani:"tajemnice úřadu", bydliste:"Hronov"},
+  {p:2, titul:"MVDr.", jmeno:"Tomáš Strnad", prijmeni:"Strnad", povolani:"veterinární lékař", bydliste:"Hronov"},
+  {p:3, titul:"", jmeno:"Jitka Šimková", prijmeni:"Šimková", povolani:"konzultantka laboratorních služeb", bydliste:"Hronov"},
+  {p:4, titul:"", jmeno:"Jaroslav Rubeš", prijmeni:"Rubeš", povolani:"OSVČ", bydliste:"Hronov"},
+  {p:5, titul:"JUDr.", jmeno:"Eva Vrzáčková", prijmeni:"Vrzáčková", povolani:"právnička", bydliste:"Hronov"},
+  {p:6, titul:"", jmeno:"Jan Jirman", prijmeni:"Jirman", povolani:"OSVČ", bydliste:"Velký Dřevíč"},
+  {p:7, titul:"Ing.", jmeno:"Jaroslav Jeništa", prijmeni:"Jeništa", povolani:"technický dozor staveb", bydliste:"Rokytník"},
+  {p:8, titul:"", jmeno:"Jiřina Hartmanová", prijmeni:"Hartmanová", povolani:"asistentka pedagoga", bydliste:"Žabokrky"},
+  {p:9, titul:"", jmeno:"Vojtěch Haňavec", prijmeni:"Haňavec", povolani:"obchodní manažer", bydliste:"Zbečník"},
+  {p:10, titul:"", jmeno:"Karel Neuschl", prijmeni:"Neuschl", povolani:"pedagog volného času", bydliste:"Hronov"},
+  {p:11, titul:"MUDr.", jmeno:"Antonín Špáta", prijmeni:"Špáta", povolani:"lékař", bydliste:"Hronov"},
+  {p:12, titul:"", jmeno:"Petr Topolnickyj", prijmeni:"Topolnickyj", povolani:"OSVČ", bydliste:"Velký Dřevíč"},
+  {p:13, titul:"DiS.", jmeno:"Michaela Kajnarová", prijmeni:"Kajnarová", povolani:"investiční technička", bydliste:"Zbečník"},
+  {p:14, titul:"", jmeno:"Tomáš Koutský", prijmeni:"Koutský", povolani:"OSVČ", bydliste:"Hronov"},
+  {p:15, titul:"Bc.", jmeno:"Hana Nedvědová", prijmeni:"Nedvědová", povolani:"projektová manažerka", bydliste:"Hronov"},
+  {p:16, titul:"Aut. arch.", jmeno:"David Chmelař", prijmeni:"Chmelař", povolani:"architekt", bydliste:"Hronov"},
+  {p:17, titul:"", jmeno:"Marie Hrábková Brátová", prijmeni:"Hrábková Brátová", povolani:"vedoucí pracovnice v rodinné firmě", bydliste:"Hronov"},
+  {p:18, titul:"", jmeno:"Jiří Zima", prijmeni:"Zima", povolani:"obchodník", bydliste:"Hronov"},
+  {p:19, titul:"", jmeno:"Sylva Fulková", prijmeni:"Fulková", povolani:"zdravotní sestra", bydliste:"Hronov"},
+  {p:20, titul:"", jmeno:"Bohuslav Foglar", prijmeni:"Foglar", povolani:"OSVČ", bydliste:"Hronov"},
+  {p:21, titul:"", jmeno:"Jakub Liška", prijmeni:"Liška", povolani:"stavbyvedoucí", bydliste:"Hronov"},
+];
+
+function fullName(c){ return c.titul ? `${c.titul} ${c.jmeno}` : c.jmeno; }
+function stripDiacritics(str){
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+function slugFor(c){
+  // Soubor pojmenovaný podle příjmení bez diakritiky, malými písmeny: prijmeni.jpg
+  // (u kandidátů se dvěma příjmeními spojeno pomlčkou, např. hrabkova-bratova.jpg)
+  return stripDiacritics(c.prijmeni).toLowerCase().replace(/\s+/g, '-');
+}
+
+const top3 = CANDIDATES.slice(0,3);
+const rest = CANDIDATES.slice(3);
+
+const top3Grid = document.getElementById('top3Grid');
+top3.forEach(c=>{
+  const key = slugFor(c);
+  IMAGES[key] = `${GH_BASE}/${key}.jpg`;
+  const card = document.createElement('div');
+  card.className = 'candidate-top-card';
+  card.innerHTML = `
+    <div class="ballot-badge">${c.p}</div>
+    <div class="ph" data-img-key="${key}">
+      <div class="ph-label">FOTO: ${fullName(c)}<br>soubor: ${key}.jpg</div>
+    </div>
+    <div class="candidate-info">
+      <div class="candidate-name">${fullName(c)}</div>
+      <div class="candidate-role">${c.povolani}</div>
+    </div>
+  `;
+  top3Grid.appendChild(card);
+  applyImage(card.querySelector('[data-img-key]'), key);
+});
+
+const restGrid = document.getElementById('restGrid');
+rest.forEach(c=>{
+  const key = slugFor(c);
+  IMAGES[key] = `${GH_BASE}/${key}.jpg`;
+  const card = document.createElement('div');
+  card.className = 'candidate-card';
+  card.innerHTML = `
+    <div class="ballot-badge">${c.p}</div>
+    <div class="ph" data-img-key="${key}">
+      <div class="ph-label">${key}.jpg</div>
+    </div>
+    <div class="candidate-info">
+      <div class="candidate-name">${fullName(c)}</div>
+      <div class="candidate-role">${c.povolani}</div>
+    </div>
+  `;
+  restGrid.appendChild(card);
+  applyImage(card.querySelector('[data-img-key]'), key);
+});
+
+/* ============================================
+   MOBILNÍ MENU
+   ============================================ */
+document.getElementById('burgerBtn').addEventListener('click', ()=>{
+  document.getElementById('mainNav').classList.toggle('open');
+});
+document.querySelectorAll('#mainNav a').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('mainNav').classList.remove('open'));
+});
+
+/* ============================================
+   PLACEHOLDER STAŽENÍ (dokud nejsou reálné PDF)
+   ============================================ */
+['downloadLeaflet','downloadBanner'].forEach(id=>{
+  document.getElementById(id).addEventListener('click', (e)=>{
+    e.preventDefault();
+    alert('TODO: doplnit odkaz na reálný PDF soubor letáku/banneru.');
+  });
+});
+</script>
+
+</body>
+</html>
